@@ -9,52 +9,69 @@
     <title>Document</title>
   </head>
   <body style="background-color:black">
-    <section>
-      <h1 class="text-center" style="font-family:fantasy; color:aliceblue">
-        MONSTER FIGHT
-      </h1>
-      <img
-        class="image-center"
-        src="https://cache.desktopnexus.com/thumbseg/417/417610-bigthumbnail.jpg"
-      />
-    </section>
-    <section class="row">
-      <div class="small-6 columns">
-        <h1 class="text-center" style="color:aliceblue; font-family: fantasy">
-          MONSTER
+    <div id="app">
+      <section>
+        <h1 class="text-center" style="font-family:fantasy; color:aliceblue">
+          MONSTER FIGHT
         </h1>
-        <div class="healthbar">
-          <div
-            class="healthbar text-center"
-            style="background-color: green; margin: 0; color: white;"
-          ></div>
+        <img
+          class="image-center"
+          src="https://cache.desktopnexus.com/thumbseg/417/417610-bigthumbnail.jpg"
+        />
+      </section>
+      <section class="row">
+        <div class="small-6 columns">
+          <h1 class="text-center" style="color:aliceblue; font-family: fantasy">
+            MONSTER
+          </h1>
+          <div class="healthbar">
+            <div
+              class="healthbar text-center"
+              style="background-color: green; margin: 0; color: white"
+              :style="{width: monsterHealth + '%'}"
+            >
+              {{ monsterHealth }}
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="small-6 columns">
-        <h1 class="text-center" style="color:aliceblue; font-family: fantasy">
-          YOU
-        </h1>
-        <div class="healthbar">
-          <div
-            class="healthbar text-center"
-            style="background-color: green; margin: 0; color: white;"
-          ></div>
+        <div class="small-6 columns">
+          <h1 class="text-center" style="color:aliceblue; font-family: fantasy">
+            YOU
+          </h1>
+          <div class="healthbar">
+            <div
+              class="healthbar text-center"
+              style="background-color: green; margin: 0; color: white"
+              :style="{width: playerHealth + '%'}"
+            >
+              {{ playerHealth }}
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="row controls">
-      <div class="small-12 columns">
-        <button id="start-game">START NEW GAME</button>
-      </div>
-    </section>
+      <section class="row controls" v-if="!gameIsRunning">
+        <div class="small-12 columns">
+          <button id="start-game" @click="startGame">START NEW GAME</button>
+        </div>
+      </section>
 
-    <section class="row controls">
-      <div class="small-12 columns">
-        <button id="attack">ATTACK</button>
-        <button id="special-attack">SPECIAL ATTACK</button>
-        <button id="heal">HEAL</button> <button id="giveup">GIVE UP</button>
-      </div>
-    </section>
+      <section class="row controls" v-else>
+        <div class="small-12 columns">
+          <button id="attack">ATTACK</button>
+          <button id="special-attack">SPECIAL ATTACK</button>
+          <button id="heal">HEAL</button> <button id="giveup">GIVE UP</button>
+        </div>
+      </section>
+
+      <section class="row log">
+        <div class="small-12 columns">
+          <ul>
+            <li></li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <script src="app.js"></script>
   </body>
 </html>
